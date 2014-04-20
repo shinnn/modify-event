@@ -26,7 +26,7 @@ tree = esNext(tree, options);
 
 ### esNext(tree, options)
 
-[All esnext options](https://github.com/square/esnext/blob/master/lib/index.js#L63-L96) except for source map are available.
+[All esnext options](https://github.com/square/esnext/blob/master/lib/index.js#L63-L96) are available except for source map.
 
 ## License
 
