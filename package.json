@@ -1,0 +1,54 @@
+{
+  "name": "broccoli-esnext",
+  "version": "0.0.0",
+  "description": "JS.next to JS.today transpiler for Broccoli with esnext",
+  "main": "index.js",
+  "scripts": {
+    "lint": "jshint *.js test/*.js test/fixture/*.js --reporter node_modules/jshint-stylish/stylish",
+    "build": "rimraf test/actual && broccoli build test/actual",
+    "pretest": "npm run-script lint & npm run-script build",
+    "test": "mocha --reporter spec test/test.js",
+    "posttest": "rimraf tmp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shinnn/broccoli-esnext.git"
+  },
+  "author": {
+    "name": "Shinnosuke Watanabe",
+    "url": "https://github.com/shinnn"
+  },
+  "readmeFilename": "README.md",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/shinnn/broccoli-esnext/blob/master/LICENSE"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/shinnn/broccoli-esnext/issues"
+  },
+  "homepage": "https://github.com/shinnn/broccoli-esnext",
+  "keywords": [
+    "broccoli-plugin",
+    "language",
+    "ecmascript",
+    "es6",
+    "ES.next",
+    "harmony",
+    "compiler",
+    "transpiler"
+  ],
+  "dependencies": {
+    "broccoli-filter": "^0.1.6",
+    "esnext": "^0.7.6"
+  },
+  "devDependencies": {
+    "broccoli": "^0.9.0",
+    "jshint": "^2.5.0",
+    "jshint-stylish": "^0.1.5",
+    "mocha": "^1.18.2",
+    "q": "^2.0.1",
+    "rimraf": "^2.2.6"
+  }
+}
