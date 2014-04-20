@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./index')('test/fixture');
+module.exports = require('./index')('test/fixture', {includeRuntime: true});

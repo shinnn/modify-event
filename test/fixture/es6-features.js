@@ -14,3 +14,9 @@ class Person {
 function multiply(x=0, y=0) {
   return x * y;
 }
+
+function* gen(i) {
+  while(true) {
+    yield i++;  
+  }
+}
