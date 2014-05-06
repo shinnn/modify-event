@@ -15,8 +15,8 @@
     return;
   }
 
-  function wrapGenerator(innerFn, self, tryList) {
-    return new Generator(innerFn, self || null, tryList || []);
+  function wrapGenerator(innerFn, outerFn, self, tryList) {
+    return new Generator(innerFn, outerFn, self || null, tryList || []);
   }
 
   global.wrapGenerator = wrapGenerator;
@@ -33,8 +33,15 @@
   // breaking out of the dispatch switch statement.
   var ContinueSentinel = {};
 
+  var Gp = Generator.prototype;
+  var GFp = GeneratorFunction.prototype = Object.create(Function.prototype);
+  GFp.constructor = GeneratorFunction;
+  GFp.prototype = Gp;
+  Gp.constructor = GFp;
+
   wrapGenerator.mark = function(genFun) {
-    genFun.constructor = GeneratorFunction;
+    genFun.__proto__ = GFp;
+    genFun.prototype = Object.create(Gp);
     return genFun;
   };
 
@@ -48,8 +55,8 @@
     return ctor ? GeneratorFunction.name === ctor.name : false;
   };
 
-  function Generator(innerFn, self, tryList) {
-    var generator = this;
+  function Generator(innerFn, outerFn, self, tryList) {
+    var generator = outerFn ? Object.create(outerFn.prototype) : this;
     var context = new Context(tryList);
     var state = GenStateSuspendedStart;
 
@@ -165,6 +172,8 @@
 
     generator.next = invoke.bind(generator, "next");
     generator.throw = invoke.bind(generator, "throw");
+
+    return generator;
   }
 
   Generator.prototype.toString = function() {
@@ -392,36 +401,7 @@
   };
 }).apply(this, Function("return [this, function GeneratorFunction(){}]")());
 
-wrapGenerator.mark(gen);
-
-var double = function(num) {
-  return num * 2;
-};
-
-var Person = function() {
-  function Person(givenName, surname) {
-    this.givenName = givenName;
-    this.surname = surname;
-  }
-
-  Object.defineProperty(Person.prototype, "fullName", {
-    get: function() {
-      return "" + this.givenName + " " + this.surname + "";
-    },
-
-    enumerable: false
-  });
-
-  return Person;
-}();
-
-function multiply() {
-  var x = (arguments[0] !== void 0 ? arguments[0] : 0);
-  var y = (arguments[1] !== void 0 ? arguments[1] : 0);
-  return x * y;
-}
-
-function gen(i) {
+var gen = wrapGenerator.mark(function gen(i) {
   return wrapGenerator(function gen$($ctx0) {
     while (1) switch ($ctx0.prev = $ctx0.next) {
     case 0:
@@ -439,5 +419,34 @@ function gen(i) {
     case "end":
       return $ctx0.stop();
     }
-  }, this);
+  }, gen, this);
+});
+
+var $__Object$defineProperty = Object.defineProperty;
+
+var double = function(num) {
+  return num * 2;
+};
+
+var Person = function() {
+  function Person(givenName, surname) {
+    this.givenName = givenName;
+    this.surname = surname;
+  }
+
+  $__Object$defineProperty(Person.prototype, "fullName", {
+    get: function() {
+      return "" + this.givenName + " " + this.surname + "";
+    },
+
+    enumerable: false
+  });
+
+  return Person;
+}();
+
+function multiply() {
+  var x = (arguments[0] !== void 0 ? arguments[0] : 0);
+  var y = (arguments[1] !== void 0 ? arguments[1] : 0);
+  return x * y;
 }
