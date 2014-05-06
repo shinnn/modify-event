@@ -1,13 +1,13 @@
 {
   "name": "broccoli-esnext",
   "version": "0.1.0",
-  "description": "JS.next to JS.today transpiler for Broccoli with esnext",
+  "description": "JS.next-to-JS.today transpiler for Broccoli with esnext",
   "main": "index.js",
   "scripts": {
     "lint": "jshint *.js test/*.js test/fixture/*.js --reporter node_modules/jshint-stylish/stylish",
     "build": "rimraf test/actual && broccoli build test/actual",
     "pretest": "npm run-script lint & npm run-script build",
-    "test": "mocha --reporter spec test/test.js",
+    "test": "mocha test/test.js --reporter spec --timeout 100",
     "posttest": "rimraf tmp"
   },
   "repository": {
@@ -34,21 +34,21 @@
     "language",
     "ecmascript",
     "es6",
-    "ES.next",
+    "esnext",
     "harmony",
     "compiler",
     "transpiler"
   ],
   "dependencies": {
     "broccoli-filter": "^0.1.6",
-    "esnext": "^0.7.6"
+    "esnext": "^0.7.8"
   },
   "devDependencies": {
-    "broccoli": "^0.9.0",
+    "broccoli": "^0.11.0",
     "jshint": "^2.5.0",
-    "jshint-stylish": "^0.1.5",
+    "jshint-stylish": "^0.2.0",
     "mocha": "^1.18.2",
     "q": "^2.0.1",
-    "rimraf": "^2.2.6"
+    "rimraf": "^2.2.8"
   }
 }
