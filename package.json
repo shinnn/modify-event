@@ -41,7 +41,7 @@
   ],
   "dependencies": {
     "broccoli-filter": "^0.1.6",
-    "esnext": "^0.7.9"
+    "esnext": "^0.7.10"
   },
   "devDependencies": {
     "broccoli": "^0.12.0",
