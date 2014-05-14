@@ -423,6 +423,7 @@ var gen = wrapGenerator.mark(function gen(i) {
 });
 
 var $__Object$defineProperty = Object.defineProperty;
+'use strict';
 
 var double = function(num) {
   return num * 2;

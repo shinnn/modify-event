@@ -1,3 +1,5 @@
+'use strict';
+
 var double = num => num * 2;
 
 class Person {
