@@ -41,13 +41,13 @@
   ],
   "dependencies": {
     "broccoli-filter": "^0.1.6",
-    "esnext": "^0.7.10"
+    "esnext": "^0.7.13"
   },
   "devDependencies": {
     "broccoli": "^0.12.0",
-    "jshint": "^2.5.0",
+    "jshint": "^2.5.1",
     "jshint-stylish": "^0.2.0",
-    "mocha": "^1.18.2",
+    "mocha": "^1.19.0",
     "q": "^2.0.1",
     "rimraf": "^2.2.8"
   }
