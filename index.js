@@ -7,7 +7,7 @@ function EsNextFilter(inputTree, options) {
   if (!(this instanceof EsNextFilter)) {
     return new EsNextFilter(inputTree, options);
   }
-  
+
   this.inputTree = inputTree;
   this.options = options || {};
 }
