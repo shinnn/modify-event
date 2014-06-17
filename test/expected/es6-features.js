@@ -176,7 +176,13 @@
     return generator;
   }
 
-  Generator.prototype.toString = function() {
+  Gp[typeof Symbol === "function"
+     && Symbol.iterator
+     || "@@iterator"] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
     return "[object Generator]";
   };
 
@@ -454,6 +460,8 @@ var double = function(num) {
 };
 
 var Person = function() {
+  "use strict";
+
   function Person(givenName, surname) {
     this.givenName = givenName;
     this.surname = surname;
