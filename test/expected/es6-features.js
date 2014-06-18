@@ -472,7 +472,8 @@ var Person = function() {
       return "" + this.givenName + " " + this.surname + "";
     },
 
-    enumerable: false
+    enumerable: true,
+    configurable: true
   });
 
   return Person;
