@@ -5,7 +5,7 @@
 [![Dependency Status](https://david-dm.org/shinnn/broccoli-esnext.svg)](https://david-dm.org/shinnn/broccoli-esnext)
 [![devDependency Status](https://david-dm.org/shinnn/broccoli-esnext/dev-status.svg)](https://david-dm.org/shinnn/broccoli-esnext#info=devDependencies)
 
-JS.next to JS.today transpiler for [Broccoli](https://github.com/joliss/broccoli) with [esnext](https://github.com/square/esnext)
+JS.next to JS.today transpiler for [Broccoli](https://github.com/broccolijs/broccoli) with [esnext](https://github.com/square/esnext)
 
 ## Installation
 
@@ -26,7 +26,7 @@ tree = esNext(tree, options);
 
 ### esNext(tree, options)
 
-[All esnext options](https://github.com/square/esnext/blob/master/lib/index.js#L63-L96) are available except for source map.
+[All esnext options](https://github.com/square/esnext/blob/cf0ecb617a95260191048e3b29227e0016dc427d/lib/index.js#L59-L94) are available except for source map.
 
 ## License
 
