@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "jshint *.js test/*.js test/fixture/*.js --reporter node_modules/jshint-stylish/stylish",
-    "build": "rimraf test/actual && broccoli build test/actual",
+    "build": "set test/actual; rimraf $1 && broccoli build $1",
     "pretest": "npm run-script lint & npm run-script build",
     "test": "mocha test/test.js --reporter spec --timeout 100",
     "posttest": "rimraf tmp"
@@ -41,7 +41,7 @@
   ],
   "dependencies": {
     "broccoli-filter": "^0.1.6",
-    "esnext": "^0.8.1"
+    "esnext": "^0.8.2"
   },
   "devDependencies": {
     "broccoli": "^0.12.3",
