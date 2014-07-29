@@ -5,11 +5,34 @@
 [![Dependency Status](https://david-dm.org/shinnn/broccoli-esnext.svg)](https://david-dm.org/shinnn/broccoli-esnext)
 [![devDependency Status](https://david-dm.org/shinnn/broccoli-esnext/dev-status.svg)](https://david-dm.org/shinnn/broccoli-esnext#info=devDependencies)
 
-JS.next to JS.today transpiler for [Broccoli](https://github.com/broccolijs/broccoli) with [esnext](https://github.com/square/esnext)
+JS.next-to-JS.today transpiler for [Broccoli](https://github.com/broccolijs/broccoli), using [esnext](https://github.com/square/esnext)
+
+```javascript
+var quote = (single = false, ...elms) => elms.map(elm => single? `'${elm}'`: `"${elm}"`);
+
+quote(true, ...['carrot', 'onion', 'potato']);
+```
+
+↓
+
+```javascript
+var $__Array$prototype$slice = Array.prototype.slice;
+
+var quote = function() {
+  var single = (arguments[0] !== void 0 ? arguments[0] : false);
+  var elms = [].slice.call(arguments, 1);
+
+  return elms.map(function(elm) {
+    return single? "'" + elm + "'": "\"" + elm + "\"";
+  });
+};
+
+quote.apply(null, [true].concat($__Array$prototype$slice.call(['carrot', 'onion', 'potato'])));
+```
 
 ## Installation
 
-Install with [npm](https://www.npmjs.org/). (Make sure you have installed [Node](http://nodejs.org/).)
+[Install with npm](https://www.npmjs.org/doc/cli/npm-install.html). (Make sure you have installed [Node](http://nodejs.org/))
 
 ```
 npm i --save-dev broccoli-esnext
