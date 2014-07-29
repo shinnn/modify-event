@@ -1,3 +1,5 @@
+/* jshint unused: false */
+
 'use strict';
 
 var double = num => num * 2;
@@ -9,7 +11,7 @@ class Person {
   }
 
   get fullName() {
-    return `${ this.givenName } ${ this.surname }`;
+    return `${this.givenName} ${this.surname}`;
   }
 }
 

@@ -1,3 +1,5 @@
+/* jshint unused: false */
+
 (function(
   // Reliable reference to the global object (i.e. window in browsers).
   global,
@@ -432,22 +434,22 @@
 }).apply(this, Function("return [this, function GeneratorFunction(){}]")());
 
 var gen = wrapGenerator.mark(function gen(i) {
-  return wrapGenerator(function gen$($ctx0) {
-    while (1) switch ($ctx0.prev = $ctx0.next) {
+  return wrapGenerator(function gen$(context$1$0) {
+    while (1) switch (context$1$0.prev = context$1$0.next) {
     case 0:
       if (!true) {
-        $ctx0.next = 5;
+        context$1$0.next = 5;
         break;
       }
 
-      $ctx0.next = 3;
+      context$1$0.next = 3;
       return i++;
     case 3:
-      $ctx0.next = 0;
+      context$1$0.next = 0;
       break;
     case 5:
     case "end":
-      return $ctx0.stop();
+      return context$1$0.stop();
     }
   }, gen, this);
 });
