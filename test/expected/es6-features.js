@@ -1,5 +1,68 @@
 /* jshint unused: false */
 
+var $__getIteratorRange = function(iterator, index, begin, len) {
+  if (index > begin) {
+    throw new RangeError();
+  }
+
+  if (typeof len === "undefined") {
+    len = Infinity;
+  }
+
+  var range = [], end = begin + len;
+
+  while (index < end) {
+    var next = iterator.next();
+
+    if (next.done) {
+      break;
+    }
+
+    if (index >= begin) {
+      range.push(next.value);
+    }
+
+    index++;
+  }
+
+  return {
+    range: range,
+    index: index
+  };
+};
+
+var $__getIterator = function(iterable) {
+  var sym = typeof Symbol === "function" && Symbol.iterator || "@@iterator";
+
+  if (typeof iterable[sym] === "function") {
+    return iterable[sym]();
+  } else if (typeof iterable === "object" || typeof iterable === "function") {
+    return $__getArrayIterator(iterable);
+  } else {
+    throw new TypeError();
+  }
+};
+
+var $__getArrayIterator = function(array) {
+  var index = 0;
+
+  return {
+    next: function() {
+      if (index < array.length) {
+        return {
+          done: false,
+          value: array[index++]
+        };
+      } else {
+        return {
+          done: true,
+          value: void 0
+        };
+      }
+    }
+  };
+};
+
 (function(
   // Reliable reference to the global object (i.e. window in browsers).
   global,
@@ -460,6 +523,14 @@ var $__Object$defineProperty = Object.defineProperty;
 var double = function(num) {
   return num * 2;
 };
+
+var var$0 = [1, 2, 3],
+    iterator$0 = $__getIterator(var$0),
+    iteratorValue$0 = {
+      index: 0
+    },
+    one = (iteratorValue$0 = $__getIteratorRange(iterator$0, iteratorValue$0.index, 0, 1), iteratorValue$0.range[0]),
+    three = (iteratorValue$0 = $__getIteratorRange(iterator$0, iteratorValue$0.index, 2, 1), iteratorValue$0.range[0]);
 
 var Person = function() {
   "use strict";

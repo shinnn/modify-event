@@ -4,6 +4,8 @@
 
 var double = num => num * 2;
 
+var [one, , three] = [1, 2, 3];
+
 class Person {
   constructor(givenName, surname) {
     this.givenName = givenName;
