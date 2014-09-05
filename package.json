@@ -1,6 +1,6 @@
 {
   "name": "broccoli-esnext",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "JS.next-to-JS.today transpiler for Broccoli with esnext",
   "main": "index.js",
   "scripts": {
