@@ -1,18 +1,20 @@
 'use strict';
 
-var assert = require('assert');
-var fs = require('fs');
-var Q = require('q');
+var readFiles = require('read-files-promise');
+var test = require('tape');
 
-var readFile = Q.denodeify(fs.readFile);
+test('broccoli-esnext', function(t) {
+  t.plan(1);
 
-describe('broccoli-esnext', function() {
-  it('should transpile ES6 to ES5.', function() {
-    return Q.all([
-      readFile('test/actual/es6-features.js'),
-      readFile('test/expected/es6-features.js')
-    ]).spread(function(actual, expected) {
-      assert.strictEqual(actual.toString(), expected.toString());
-    });
+  readFiles([
+    'test/actual/es6-features.js',
+    'test/expected/es6-features.js'
+  ])
+  .then(function(bufs) {
+    t.strictEqual(
+      bufs[0].toString(),
+      bufs[1].toString(),
+      'should transpile ES-next script using esnext.'
+    );
   });
 });
