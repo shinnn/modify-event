@@ -38,18 +38,18 @@ quote.apply(null, [true].concat($__Array$prototype$slice.call(['carrot', 'onion'
 npm i --save-dev broccoli-esnext
 ```
 
-## Example
+## Usage
 
 ```javascript
-var esNext = require('broccoli-esnext');
-tree = esNext(tree, options);
+var esnext = require('broccoli-esnext');
+tree = esnext(tree, options);
 ```
 
 ## API
 
-### esNext(tree, options)
+### esnext(tree, options)
 
-[All esnext options](https://github.com/square/esnext/blob/cf0ecb617a95260191048e3b29227e0016dc427d/lib/index.js#L59-L94) are available except for source map.
+[All esnext options](https://github.com/esnext/esnext/blob/50b89f461cc7ca93484928540ebbf3e6ba58f302/lib/index.js#L61-L100) are available except for source map.
 
 ## License
 
