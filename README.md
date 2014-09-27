@@ -1,11 +1,11 @@
 # broccoli-esnext
 
-[![NPM version](https://badge.fury.io/js/broccoli-esnext.svg)](http://badge.fury.io/js/broccoli-esnext)
+[![NPM version](https://badge.fury.io/js/broccoli-esnext.svg)](https://www.npmjs.org/package/broccoli-esnext)
 [![Build Status](https://travis-ci.org/shinnn/broccoli-esnext.svg?branch=master)](https://travis-ci.org/shinnn/broccoli-esnext)
 [![Dependency Status](https://david-dm.org/shinnn/broccoli-esnext.svg)](https://david-dm.org/shinnn/broccoli-esnext)
 [![devDependency Status](https://david-dm.org/shinnn/broccoli-esnext/dev-status.svg)](https://david-dm.org/shinnn/broccoli-esnext#info=devDependencies)
 
-JS.next-to-JS.today transpiler for [Broccoli](https://github.com/broccolijs/broccoli), using [esnext](https://github.com/square/esnext)
+JS.next-to-JS.today transpiler for [Broccoli](https://github.com/broccolijs/broccoli), using [esnext](https://github.com/esnext/esnext)
 
 ```javascript
 var quote = (single = false, ...elms) => elms.map(elm => single? `'${elm}'`: `"${elm}"`);
@@ -49,10 +49,17 @@ tree = esnext(tree, options);
 
 ### esnext(tree, options)
 
-[All esnext options](https://github.com/esnext/esnext/blob/50b89f461cc7ca93484928540ebbf3e6ba58f302/lib/index.js#L61-L100) are available except for source map.
+[All esnext options](https://github.com/esnext/esnext/blob/30a2f83eee0f15c917f1f666616de444fab2c912/lib/index.js#L48-L59) and `sourcemap` option (described below) are available.
+
+#### options.sourcemap
+
+Type: `Boolean`  
+Default: `false`
+
+Appends base64-encoded [sourcemap](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k) to output files.
 
 ## License
 
 Copyright (c) 2014 [Shinnosuke Watanabe](https://github.com/shinnn)
 
-Licensed under [the MIT LIcense](./LICENSE).
+Licensed under [the MIT License](./LICENSE).

@@ -1,3 +1,12 @@
 'use strict';
 
-module.exports = require('./index')('test/fixture', {includeRuntime: true});
+var mergeTrees = require('broccoli-merge-trees');
+var esnext = require('./');
+
+module.exports = mergeTrees([
+  esnext('test/fixture/es6-features'),
+  esnext('test/fixture/sourcemap', {
+    includeRuntime: true,
+    sourcemap: true
+  })
+], {overwrite: true});

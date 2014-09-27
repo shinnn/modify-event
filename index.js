@@ -1,25 +1,45 @@
 'use strict';
 
-var Filter = require('broccoli-filter');
-var compileEsNext = require('esnext').compile;
+var path = require('path');
 
-function EsNextFilter(inputTree, options) {
-  if (!(this instanceof EsNextFilter)) {
-    return new EsNextFilter(inputTree, options);
+var Filter = require('broccoli-filter');
+var compileEsnext = require('esnext').compile;
+var xtend = require('xtend');
+
+function EsnextFilter(inputTree, options) {
+  if (!(this instanceof EsnextFilter)) {
+    return new EsnextFilter(inputTree, options);
   }
 
   this.inputTree = inputTree;
   this.options = options || {};
 }
 
-EsNextFilter.prototype = Object.create(Filter.prototype);
-EsNextFilter.prototype.constructor = EsNextFilter;
+EsnextFilter.prototype = Object.create(Filter.prototype);
+EsnextFilter.prototype.constructor = EsnextFilter;
 
-EsNextFilter.prototype.extensions = ['js'];
-EsNextFilter.prototype.targetExtension = 'js';
+EsnextFilter.prototype.extensions = ['js'];
+EsnextFilter.prototype.targetExtension = 'js';
 
-EsNextFilter.prototype.processString = function(str) {
-  return compileEsNext(str, this.options).code;
+EsnextFilter.prototype.processString = function(str, relativePath) {
+  var options = xtend(this.options, {
+    sourceFileName: path.join(this.inputTree, relativePath)
+  });
+
+  if (options.sourcemap) {
+    options.sourceMapName = '_';
+  }
+
+  var result = compileEsnext(str, options);
+
+  if (result.map) {
+    var map = JSON.stringify(result.map);
+    return result.code +
+           '\n//# sourceMappingURL=data:application/json;base64,' +
+           new Buffer(map).toString('base64');
+  } else {
+    return result.code;
+  }
 };
 
-module.exports = EsNextFilter;
+module.exports = EsnextFilter;
