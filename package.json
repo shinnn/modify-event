@@ -1,6 +1,6 @@
 {
   "name": "broccoli-esnext",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "JS.next-to-JS.today transpiler for Broccoli, using esnext",
   "scripts": {
     "lint": "jshint *.js test/*.js test/fixture/*/*.js --reporter node_modules/jshint-stylish/stylish",
