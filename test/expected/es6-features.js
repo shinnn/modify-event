@@ -118,7 +118,6 @@ var Person = function() {
     }
   });
 
-  $__Object$defineProperties(Person, {});
   return Person;
 }();
 
