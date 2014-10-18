@@ -2,8 +2,9 @@
 
 var path = require('path');
 
-var Filter = require('broccoli-filter');
 var compileEsnext = require('esnext').compile;
+var Filter = require('broccoli-filter');
+var inlineSourceMapComment = require('inline-source-map-comment');
 var xtend = require('xtend');
 
 function EsnextFilter(inputTree, options) {
@@ -33,10 +34,7 @@ EsnextFilter.prototype.processString = function(str, relativePath) {
   var result = compileEsnext(str, options);
 
   if (result.map) {
-    var map = JSON.stringify(result.map);
-    return result.code +
-           '\n//# sourceMappingURL=data:application/json;base64,' +
-           new Buffer(map).toString('base64');
+    return result.code + '\n' + inlineSourceMapComment(result.map) + '\n';
   } else {
     return result.code;
   }
