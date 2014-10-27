@@ -23,8 +23,15 @@ EsnextFilter.prototype.extensions = ['js'];
 EsnextFilter.prototype.targetExtension = 'js';
 
 EsnextFilter.prototype.processString = function(str, relativePath) {
+  var inputDir;
+  if (typeof this.inputTree === 'string') {
+    inputDir = this.inputTree;
+  } else {
+    inputDir = this.inputTree.inputTree;
+  }
+
   var options = xtend(this.options, {
-    sourceFileName: path.join(this.inputTree, relativePath)
+    sourceFileName: path.join(inputDir, relativePath)
   });
 
   if (options.sourcemap) {
