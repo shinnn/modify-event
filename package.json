@@ -38,7 +38,19 @@
     "compile",
     "compiler",
     "transpile",
-    "transpiler"
+    "transpiler",
+    "arrow",
+    "arrow-function",
+    "class",
+    "computed-property",
+    "default-params",
+    "destructuring",
+    "generator",
+    "object-literal",
+    "rest",
+    "spread",
+    "template",
+    "unicode-regex"
   ],
   "dependencies": {
     "broccoli-filter": "^0.1.9",
