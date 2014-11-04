@@ -5,7 +5,6 @@ var path = require('path');
 var compileEsnext = require('esnext').compile;
 var Filter = require('broccoli-filter');
 var inlineSourceMapComment = require('inline-source-map-comment');
-var xtend = require('xtend');
 
 function EsnextFilter(inputTree, options) {
   if (!(this instanceof EsnextFilter)) {
@@ -22,23 +21,24 @@ EsnextFilter.prototype.constructor = EsnextFilter;
 EsnextFilter.prototype.extensions = ['js'];
 EsnextFilter.prototype.targetExtension = 'js';
 
-EsnextFilter.prototype.processString = function(str, relativePath) {
-  var inputDir;
-  if (typeof this.inputTree === 'string') {
-    inputDir = this.inputTree;
-  } else {
-    inputDir = this.inputTree.inputTree;
-  }
+EsnextFilter.prototype.read = function(readTree) {
+  var self = this;
+  var args = arguments;
 
-  var options = xtend(this.options, {
-    sourceFileName: path.join(inputDir, relativePath)
+  if (self.options.sourcemap && self.options.sourceMapName === undefined) {
+    self.options.sourceMapName = '_';
+  }
+  
+  return readTree(this.inputTree).then(function(srcDir) {
+    if (self.options.sourceFileName !== undefined) {
+      self.options.sourceFileName = path.resolve(srcDir, self.options.sourceFileName);
+    }
+    return Filter.prototype.read.apply(self, args);
   });
+};
 
-  if (options.sourcemap) {
-    options.sourceMapName = '_';
-  }
-
-  var result = compileEsnext(str, options);
+EsnextFilter.prototype.processString = function(str) {
+  var result = compileEsnext(str, this.options);
 
   if (result.map) {
     return result.code + '\n' + inlineSourceMapComment(result.map) + '\n';

@@ -14,9 +14,7 @@ module.exports = mergeTrees([
   }),
   uglify(
     new Funnel(
-      esnext(
-        stripDebug('test/fixture/simple')
-      ),
+      esnext(stripDebug(esnext(stripDebug('test/fixture/simple')))),
       {destDir: 'chained'}
     )
   )
