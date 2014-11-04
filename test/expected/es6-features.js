@@ -1,5 +1,7 @@
 /* jshint unused: false */
 
+'use strict';
+
 var $__getIteratorRange = function(iterator, index, begin, len) {
   if (index > begin) {
     throw new RangeError();
@@ -85,7 +87,6 @@ var gen = regeneratorRuntime.mark(function gen(i) {
 });
 
 var $__Object$defineProperties = Object.defineProperties;
-'use strict';
 
 var double = function(num) {
   return num * 2;
