@@ -1,7 +1,11 @@
 {
   "name": "broccoli-esnext",
   "version": "0.4.1",
-  "description": "JS.next-to-JS.today transpiler for Broccoli, using esnext",
+  "description": "esnext plugin for Broccoli",
+  "files": [
+    "index.js",
+    "LICENSE"
+  ],
   "scripts": {
     "lint": "jshint *.js test/*.js test/fixture/*/*.js --reporter node_modules/jshint-stylish/stylish",
     "build": "rimraf test/actual && broccoli build test/actual",
@@ -17,7 +21,6 @@
     "name": "Shinnosuke Watanabe",
     "url": "https://github.com/shinnn"
   },
-  "readmeFilename": "README.md",
   "licenses": [
     {
       "type": "MIT",
