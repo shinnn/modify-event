@@ -8,31 +8,27 @@
 JS.next-to-JS.today transpiler for [Broccoli](https://github.com/broccolijs/broccoli), using [esnext](https://github.com/esnext/esnext)
 
 ```javascript
-var quote = (single = false, ...elms) => elms.map(elm => single? `'${elm}'`: `"${elm}"`);
-
-quote(true, ...['carrot', 'onion', 'potato']);
+var quote = (...elms) => elms.map(elm => `"${elm}"`);
+quote('carrot', 'onion', 'potato');
 ```
 
 ↓
 
 ```javascript
-var $__Array$prototype$slice = Array.prototype.slice;
-
 var quote = function() {
-  var single = (arguments[0] !== void 0 ? arguments[0] : false);
-  var elms = [].slice.call(arguments, 1);
+  var $__arguments = arguments;
+  var elms = [].slice.call($__arguments, 0);
 
   return elms.map(function(elm) {
-    return single? "'" + elm + "'": "\"" + elm + "\"";
+    return "\"" + elm + "\"";
   });
 };
-
-quote.apply(null, [true].concat($__Array$prototype$slice.call(['carrot', 'onion', 'potato'])));
+quote('carrot', 'onion', 'potato');
 ```
 
 ## Installation
 
-[Install with npm](https://www.npmjs.org/doc/cli/npm-install.html). (Make sure you have installed [Node](http://nodejs.org/))
+[Install with npm](https://www.npmjs.org/doc/cli/npm-install.html).
 
 ```
 npm i --save-dev broccoli-esnext
@@ -49,7 +45,7 @@ tree = esnext(tree, options);
 
 ### esnext(tree, options)
 
-[All esnext options](https://github.com/esnext/esnext/blob/30a2f83eee0f15c917f1f666616de444fab2c912/lib/index.js#L48-L59) and `sourcemap` option (described below) are available.
+[All esnext options](https://github.com/esnext/esnext#available) and `sourcemap` option (described below) are available.
 
 #### options.sourcemap
 
