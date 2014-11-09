@@ -41,6 +41,23 @@ var esnext = require('broccoli-esnext');
 tree = esnext(tree, options);
 ```
 
+With broccoli-cli:
+```javascript
+//Brocfile.js
+var pickFiles = require('broccoli-static-compiler')
+var compileEsnext = require('broccoli-esnext');
+
+//All code to be compiled is within the esnext folder
+var app = 'esnext';
+app = pickFiles(app, {
+  srcDir: '/',
+  destDir: '/dist' // move under dist namespace
+});
+app = compileEsnext(app);
+
+module.exports = app;
+```
+
 ## API
 
 ### esnext(tree, options)
