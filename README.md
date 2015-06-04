@@ -9,16 +9,14 @@
 Modify the value of the specific object's [event](https://nodejs.org/api/events.html)
 
 ```javascript
-var EventEmitter = require('events').EventEmitter;
-var modifyEvent = require('modify-event');
+const EventEmitter = require('events').EventEmitter;
+const modifyEvent = require('modify-event');
 
-var emitter = new EventEmitter();
+let emitter = new EventEmitter();
 
-modifyEvent(emitter, 'foo', function(val) {
-  return val * 2;
-});
+modifyEvent(emitter, 'foo', val => val * 2);
 
-emitter.on('foo', function(data) {
+emitter.on('foo', data => {
   data; //=> 2
 });
 
@@ -36,7 +34,7 @@ npm install modify-event
 ## API
 
 ```javascript
-var modifyEvent = require('modify-event');
+const modifyEvent = require('modify-event');
 ```
 
 ### modifyEvent(*eventEmitter*, *eventName*, *modifier*)
@@ -49,18 +47,13 @@ Return: `Object` (Same as the first argument)
 It changes the first argument of the event listeners for a given event, in response to the return value of the *modifier* function.
 
 ```javascript
-var EventEmitter = require('events').EventEmitter;
-var modifyEvent = require('modify-event');
+const EventEmitter = require('events').EventEmitter;
+const modifyEvent = require('modify-event');
 
-var emitter = new EventEmitter();
+let emitter = new EventEmitter();
 
-modifyEvent(emitter, 'data', function(val) {
-  return val + 'b';
-});
-
-modifyEvent(emitter, 'data', function(val) {
-  return val + 'c';
-});
+modifyEvent(emitter, 'data', val => val + 'b');
+modifyEvent(emitter, 'data', val => val + 'c');
 
 emitter
 .on('data', listener)
