@@ -3,18 +3,14 @@
   "version": "1.0.0",
   "description": "Modify the value of the specific object's event",
   "repository": "shinnn/modify-event",
+  "author": "Shinnosuke Watanabe <snnskwtnb@gmail.com> (https://github.com/shinnn)",
   "scripts": {
     "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json index.js test.js",
     "test": "node test.js | tap-spec",
     "coverage": "istanbul cover test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/shinnn/modify-event/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "files": [
     "index.js"
   ],
@@ -25,14 +21,16 @@
     "event",
     "emit",
     "change",
+    "filter",
+    "filtering",
     "update"
   ],
   "devDependencies": {
-    "@shinnn/eslintrc-node": "^1.0.1",
-    "eslint": "^0.20.0",
-    "istanbul": "^0.3.13",
+    "@shinnn/eslintrc-node": "^1.0.2",
+    "eslint": "^0.22.1",
+    "istanbul": "^0.3.14",
     "istanbul-coveralls": "^1.0.2",
-    "tap-spec": "^3.0.0",
+    "tap-spec": "^4.0.0",
     "tape": "^4.0.0"
   }
 }
