@@ -7,7 +7,7 @@
 module.exports = function modifyEvent(eventEmitter, targetEventName, fn) {
   if (!eventEmitter || typeof eventEmitter.emit !== 'function') {
     throw new TypeError(
-      eventEmitter +
+      String(eventEmitter) +
       ' doesn\'t have "emit" method.' +
       ' The first argument to modify-event must be an instance of EventEmitter' +
       ' or its inheritance.'
@@ -30,7 +30,7 @@ module.exports = function modifyEvent(eventEmitter, targetEventName, fn) {
 
   var originalEmit = eventEmitter.emit.bind(eventEmitter);
 
-  eventEmitter.emit = function(eventName, val) {
+  eventEmitter.emit = function modifiedEmit(eventName, val) {
     if (eventName === targetEventName) {
       val = fn(val);
     }

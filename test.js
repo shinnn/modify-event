@@ -1,19 +1,19 @@
-'use strict';
+'use strong';
 
-var EventEmitter = require('events').EventEmitter;
+const {EventEmitter} = require('events');
 
-var modifyEvent = require('./');
-var test = require('tape');
+const modifyEvent = require('.');
+const {test} = require('tape');
 
-var emitter = new EventEmitter();
-
-test('modifyEvent()', function(t) {
+test('modifyEvent()', t => {
   t.plan(10);
 
   t.equal(modifyEvent.name, 'modifyEvent', 'should have a function name.');
 
+  const emitter = new EventEmitter();
+
   t.strictEqual(
-    modifyEvent(emitter, 'data', function(data) {
+    modifyEvent(emitter, 'data', data => {
       return data * 2;
     }),
     emitter,
@@ -28,7 +28,7 @@ test('modifyEvent()', function(t) {
   .emit('data', 1);
 
   emitter
-  .on('data2', function(data) {
+  .on('data2', data => {
     t.strictEqual(data, 1, 'should not modify the value of non-target events.');
   })
   .emit('data2', 1);
@@ -40,26 +40,26 @@ test('modifyEvent()', function(t) {
   );
 
   t.throws(
-    modifyEvent.bind(null, null, 'data', t.fail),
+    () => modifyEvent(null, 'data', t.fail),
     /TypeError.* must be an instance of EventEmitter or its inheritance\./,
     'should throw a type error when the first argument is not an object.'
   );
 
   t.throws(
-    modifyEvent.bind(null, {}, 'data', t.fail),
+    () => modifyEvent({}, 'data', t.fail),
     /TypeError.* must be an instance of EventEmitter or its inheritance\./,
     'should throw a type error when the first argument is not an instance of EventEmitter.'
   );
 
   t.throws(
-    modifyEvent.bind(null, emitter, 123, t.fail),
-    /TypeError.* is not a string. The second argument to modify-event must be an event name\./,
+    () => modifyEvent(emitter, 123, t.fail),
+    /TypeError.* is not a string\. The second argument to modify-event must be an event name\./,
     'should throw a type error when the second argument is not a string.'
   );
 
   t.throws(
-    modifyEvent.bind(null, emitter, 'data', 'foo'),
-    /TypeError.*foo is not a function. The third argument to modify-event must be a function\./,
+    () => modifyEvent(emitter, 'data', 'foo'),
+    /TypeError.*foo is not a function\. The third argument to modify-event must be a function\./,
     'should throw a type error when the third argument is not a function.'
   );
 });
