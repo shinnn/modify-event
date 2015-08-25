@@ -9,10 +9,10 @@
 Modify the value of the specific object's [event](https://nodejs.org/api/events.html)
 
 ```javascript
-const EventEmitter = require('events').EventEmitter;
+const {EventEmitter} = require('events');
 const modifyEvent = require('modify-event');
 
-let emitter = new EventEmitter();
+const emitter = new EventEmitter();
 
 modifyEvent(emitter, 'foo', val => val * 2);
 
@@ -47,10 +47,10 @@ Return: `Object` (Same as the first argument)
 It changes the first argument of the event listeners for a given event, in response to the return value of the *modifier* function.
 
 ```javascript
-const EventEmitter = require('events').EventEmitter;
+const {EventEmitter} = require('events');
 const modifyEvent = require('modify-event');
 
-let emitter = new EventEmitter();
+const emitter = new EventEmitter();
 
 modifyEvent(emitter, 'data', val => val + 'b');
 modifyEvent(emitter, 'data', val => val + 'c');
