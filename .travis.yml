@@ -5,6 +5,11 @@ branches:
   except: /^v\d/
 language: node_js
 node_js: stable
-after_script: npm run-script coveralls
+script:
+  - npm run-script pretest
+  - npm run-script coverage
+after_script:
+  - npm install istanbul-coveralls
+  - node node_modules/.bin/istanbul-coveralls
 notifications:
   email: false

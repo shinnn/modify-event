@@ -5,5 +5,5 @@ install:
   - ps: Install-Product node 5
   - npm install
 build: off
-test_script: node --strong_mode --harmony_destructuring test.js
+test_script: node --strong_mode --throw-deprecation --track-heap-objects --harmony_destructuring test.js
 cache: node_modules -> package.json
