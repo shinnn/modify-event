@@ -13,9 +13,7 @@ test('modifyEvent()', t => {
   const emitter = new EventEmitter();
 
   t.strictEqual(
-    modifyEvent(emitter, 'data', data => {
-      return data * 2;
-    }),
+    modifyEvent(emitter, 'data', data => data * 2),
     emitter,
     'should return the modified EventEmitter.'
   );
