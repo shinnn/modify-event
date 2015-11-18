@@ -5,9 +5,9 @@
   "repository": "shinnn/modify-event",
   "author": "Shinnosuke Watanabe <snnskwtnb@gmail.com> (https://github.com/shinnn)",
   "scripts": {
-    "pretest": "eslint --config @shinnn/node-legacy index.js test.js",
+    "pretest": "eslint --fix --config @shinnn/node-legacy index.js test.js",
     "test": "node --strong_mode --throw-deprecation --track-heap-objects --harmony_destructuring test.js | tap-spec",
-    "coverage": "node --strong_mode --throw-deprecation --track-heap-objects --harmony_destructuring istanbul cover test.js"
+    "coverage": "node --strong_mode --throw-deprecation --track-heap-objects --harmony_destructuring node_modules/.bin/istanbul cover test.js"
   },
   "license": "MIT",
   "files": [
