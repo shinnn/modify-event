@@ -4,10 +4,12 @@
 */
 'use strict';
 
+var util = require('util');
+
 module.exports = function modifyEvent(eventEmitter, targetEventName, fn) {
   if (!eventEmitter || typeof eventEmitter.emit !== 'function') {
     throw new TypeError(
-      String(eventEmitter) +
+      util.inspect(eventEmitter) +
       ' doesn\'t have "emit" method.' +
       ' The first argument to modify-event must be an instance of EventEmitter' +
       ' or its inheritance.'
@@ -16,14 +18,14 @@ module.exports = function modifyEvent(eventEmitter, targetEventName, fn) {
 
   if (typeof targetEventName !== 'string') {
     throw new TypeError(
-      targetEventName +
+      util.inspect(targetEventName) +
       ' is not a string. The second argument to modify-event must be an event name.'
     );
   }
 
   if (typeof fn !== 'function') {
     throw new TypeError(
-      fn +
+      util.inspect(fn) +
       ' is not a function. The third argument to modify-event must be a function.'
     );
   }

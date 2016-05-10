@@ -50,14 +50,14 @@ test('modifyEvent()', t => {
   );
 
   t.throws(
-    () => modifyEvent(emitter, 123, t.fail),
-    /TypeError.* is not a string\. The second argument to modify-event must be an event name\./,
+    () => modifyEvent(emitter, ['1'], t.fail),
+    /TypeError.*\[ '1' \] is not a string\. The second argument to modify-event must be an event name\./,
     'should throw a type error when the second argument is not a string.'
   );
 
   t.throws(
     () => modifyEvent(emitter, 'data', 'foo'),
-    /TypeError.*foo is not a function\. The third argument to modify-event must be a function\./,
+    /TypeError.*'foo' is not a function\. The third argument to modify-event must be a function\./,
     'should throw a type error when the third argument is not a function.'
   );
 });
