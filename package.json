@@ -1,6 +1,6 @@
 {
   "name": "modify-event",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Modify the value of the specific object's event",
   "repository": "shinnn/modify-event",
   "author": "Shinnosuke Watanabe <snnskwtnb@gmail.com> (https://github.com/shinnn)",
