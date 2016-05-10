@@ -4,7 +4,7 @@
 */
 'use strict';
 
-var util = require('util');
+const util = require('util');
 
 module.exports = function modifyEvent(eventEmitter, targetEventName, fn) {
   if (!eventEmitter || typeof eventEmitter.emit !== 'function') {
@@ -30,7 +30,7 @@ module.exports = function modifyEvent(eventEmitter, targetEventName, fn) {
     );
   }
 
-  var originalEmit = eventEmitter.emit.bind(eventEmitter);
+  const originalEmit = eventEmitter.emit.bind(eventEmitter);
 
   eventEmitter.emit = function modifiedEmit(eventName, val) {
     if (eventName === targetEventName) {
