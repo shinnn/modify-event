@@ -2,7 +2,6 @@
 
 [![NPM version](https://img.shields.io/npm/v/modify-event.svg)](https://www.npmjs.com/package/modify-event)
 [![Build Status](https://travis-ci.org/shinnn/modify-event.svg?branch=master)](https://travis-ci.org/shinnn/modify-event)
-[![Build status](https://ci.appveyor.com/api/projects/status/4noc4o9y40atakp3?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/modify-event)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/modify-event.svg)](https://coveralls.io/r/shinnn/modify-event)
 [![devDependency Status](https://david-dm.org/shinnn/modify-event/dev-status.svg)](https://david-dm.org/shinnn/modify-event#info=devDependencies)
 
