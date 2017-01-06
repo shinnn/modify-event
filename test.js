@@ -51,7 +51,7 @@ test('modifyEvent()', t => {
 
   t.throws(
     () => modifyEvent(emitter, ['1'], t.fail),
-    /TypeError.*\[ '1' \] is not a string\. The second argument to modify-event must be an event name\./,
+    /TypeError.*\[ '1' ] is not a string\. The second argument to modify-event must be an event name\./,
     'should throw a type error when the second argument is not a string.'
   );
 

@@ -5,8 +5,8 @@
   "repository": "shinnn/modify-event",
   "author": "Shinnosuke Watanabe <snnskwtnb@gmail.com> (https://github.com/shinnn)",
   "scripts": {
-    "pretest": "eslint --fix --config @shinnn/node index.js test.js",
-    "test": "node --throw-deprecation --track-heap-objects test.js | tap-spec",
+    "pretest": "eslint --fix --format=codeframe index.js test.js",
+    "test": "node --throw-deprecation --track-heap-objects test.js",
     "coverage": "istanbul cover test.js"
   },
   "license": "MIT",
@@ -26,9 +26,11 @@
   ],
   "devDependencies": {
     "@shinnn/eslint-config-node": "^3.0.0",
-    "eslint": "^3.1.1",
-    "istanbul": "^0.4.4",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.0"
+    "eslint": "^3.12.2",
+    "istanbul": "^0.4.5",
+    "tape": "^4.6.3"
+  },
+  "eslintConfig": {
+    "extends": "@shinnn/node"
   }
 }
