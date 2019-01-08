@@ -1,9 +1,8 @@
 # modify-event
 
-[![NPM version](https://img.shields.io/npm/v/modify-event.svg)](https://www.npmjs.com/package/modify-event)
-[![Build Status](https://travis-ci.org/shinnn/modify-event.svg?branch=master)](https://travis-ci.org/shinnn/modify-event)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/modify-event.svg)](https://coveralls.io/r/shinnn/modify-event)
-[![devDependency Status](https://david-dm.org/shinnn/modify-event/dev-status.svg)](https://david-dm.org/shinnn/modify-event#info=devDependencies)
+[![npm version](https://img.shields.io/npm/v/modify-event.svg)](https://www.npmjs.com/package/modify-event)
+[![Build Status](https://travis-ci.com/shinnn/modify-event.svg?branch=master)](https://travis-ci.com/shinnn/modify-event)
+[![Coverage Status](https://img.shields.io/coveralls/shinnn/modify-event.svg)](https://coveralls.io/github/shinnn/modify-event)
 
 Modify the value of the specific object's [event](https://nodejs.org/api/events.html)
 
@@ -24,7 +23,7 @@ emitter.emit('foo', 1);
 
 ## Installation
 
-[Use npm.](https://docs.npmjs.com/cli/install)
+[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/about-npm/).
 
 ```
 npm install modify-event
@@ -38,10 +37,10 @@ const modifyEvent = require('modify-event');
 
 ### modifyEvent(*eventEmitter*, *eventName*, *modifier*)
 
-*eventEmitter*: `Object` (an instance of [`EventEmitter`](https://nodejs.org/api/events.html#events_class_events_eventemitter) or its inheritance e.g. [`Stream`](https://nodejs.org/api/stream.html#stream_stream))  
-*eventName*: `String` (event name)  
+*eventEmitter*: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)  
+*eventName*: `string` (event name)  
 *modifier*: `Function`  
-Return: `Object` (Same as the first argument)
+Return: `EventEmitter` (a reference to the first argument)
 
 It changes the first argument of the event listeners for a given event, in response to the return value of the *modifier* function.
 
@@ -51,8 +50,8 @@ const modifyEvent = require('modify-event');
 
 const emitter = new EventEmitter();
 
-modifyEvent(emitter, 'data', val => val + 'b');
-modifyEvent(emitter, 'data', val => val + 'c');
+modifyEvent(emitter, 'data', val => `${val}b`);
+modifyEvent(emitter, 'data', val => `${val}c`);
 
 emitter
 .on('data', listener)
@@ -65,6 +64,6 @@ function listener(data) {
 
 ## License
 
-Copyright (c) 2015 - 2017 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2015 - 2019 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).

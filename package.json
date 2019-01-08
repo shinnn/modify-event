@@ -1,35 +1,39 @@
 {
-  "name": "modify-event",
-  "version": "2.0.0",
-  "description": "Modify the value of the specific object's event",
-  "repository": "shinnn/modify-event",
-  "author": "Shinnosuke Watanabe <snnskwtnb@gmail.com> (https://github.com/shinnn)",
-  "scripts": {
-    "pretest": "eslint --fix --format=codeframe index.js test.js",
-    "test": "istanbul cover test.js"
-  },
-  "license": "MIT",
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    "modify",
-    "value",
-    "argument",
-    "event",
-    "emit",
-    "change",
-    "filter",
-    "filtering",
-    "update"
-  ],
-  "devDependencies": {
-    "@shinnn/eslint-config-node": "^3.0.0",
-    "eslint": "^3.12.2",
-    "istanbul": "^0.4.5",
-    "tape": "^4.6.3"
-  },
-  "eslintConfig": {
-    "extends": "@shinnn/node"
-  }
+	"name": "modify-event",
+	"version": "2.0.0",
+	"description": "Modify the value of the specific object's event",
+	"author": "Shinnosuke Watanabe (https://github.com/shinnn)",
+	"repository": "shinnn/modify-event",
+	"license": "MIT",
+	"scripts": {
+		"pretest": "eslint .",
+		"test": "nyc node test.js"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"modify",
+		"value",
+		"argument",
+		"event",
+		"emit",
+		"change",
+		"filter",
+		"filtering",
+		"update"
+	],
+	"devDependencies": {
+		"@shinnn/eslint-config": "^6.8.9",
+		"eslint": "^5.12.0",
+		"nyc": "^13.1.0",
+		"nyc-config-common": "^1.0.1",
+		"tape": "^4.9.2"
+	},
+	"eslintConfig": {
+		"extends": "@shinnn"
+	},
+	"nyc": {
+		"extends": "nyc-config-common"
+	}
 }
