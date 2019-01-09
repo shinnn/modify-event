@@ -1,7 +1,3 @@
-/*!
- * modify-event | MIT (c) Shinnosuke Watanabe
- * https://github.com/shinnn/modify-event
-*/
 'use strict';
 
 const util = require('util');
@@ -13,10 +9,12 @@ module.exports = function modifyEvent(eventEmitter, targetEventName, fn) {
 		} doesn't have "emit" method. The first argument to modify-event must be an EventEmitter.`);
 	}
 
-	if (typeof targetEventName !== 'string') {
+	const targetEventNameType = typeof targetEventName;
+
+	if (targetEventNameType !== 'string' && targetEventNameType !== 'symbol') {
 		throw new TypeError(`${
 			util.inspect(targetEventName)
-		} is not a string. The second argument to modify-event must be an event name.`);
+		} is neither a string nor a symbol. The second argument to modify-event must be an event name.`);
 	}
 
 	if (typeof fn !== 'function') {

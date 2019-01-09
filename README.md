@@ -38,7 +38,7 @@ const modifyEvent = require('modify-event');
 ### modifyEvent(*eventEmitter*, *eventName*, *modifier*)
 
 *eventEmitter*: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)  
-*eventName*: `string` (event name)  
+*eventName*: `string` `symbol` (event name)  
 *modifier*: `Function`  
 Return: `EventEmitter` (a reference to the first argument)
 
@@ -49,13 +49,14 @@ const {EventEmitter} = require('events');
 const modifyEvent = require('modify-event');
 
 const emitter = new EventEmitter();
+const eventName = Symbol('custom event name');
 
-modifyEvent(emitter, 'data', val => `${val}b`);
-modifyEvent(emitter, 'data', val => `${val}c`);
+modifyEvent(emitter, eventName, val => `${val}b`);
+modifyEvent(emitter, eventName, val => `${val}c`);
 
 emitter
-.on('data', listener)
-.emit('data', 'a');
+.on(eventName, listener)
+.emit(eventName, 'a');
 
 function listener(data) {
   data; //=> 'abc'

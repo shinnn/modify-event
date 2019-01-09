@@ -22,39 +22,43 @@ test('modifyEvent()', t => {
 	.emit('data', 1);
 
 	emitter
-	.on('data2', data => {
+	.on('anotherData', data => {
 		t.equal(data, 1, 'should not modify the value of non-target events.');
 	})
-	.emit('data2', 1);
+	.emit('anotherData', 1);
 
 	t.equal(
-		emitter.emit('data3', 1),
+		emitter.emit(Symbol('this event has no listeners'), 1),
 		false,
 		'should keep the return value of .emit() method.'
 	);
 
+	t.end();
+});
+
+test('Argument validation', t => {
 	t.throws(
 		() => modifyEvent(null, 'data', t.fail),
 		/^TypeError.* must be an EventEmitter\./u,
-		'should throw a type error when the first argument is not an object.'
+		'should fail when the first argument is not an object.'
 	);
 
 	t.throws(
 		() => modifyEvent({}, 'data', t.fail),
 		/^TypeError.* must be an EventEmitter\./u,
-		'should throw a type error when the first argument is not an instance of EventEmitter.'
+		'should fail when the first argument is not an instance of EventEmitter.'
 	);
 
 	t.throws(
-		() => modifyEvent(emitter, ['1'], t.fail),
-		/^TypeError.*\[ '1' \] is not a string\. The second argument to modify-event must be an event name\./u,
-		'should throw a type error when the second argument is not a string.'
+		() => modifyEvent(new EventEmitter(), ['1'], t.fail),
+		/^TypeError.*\[ '1' \] is neither a string nor a symbol\. The second argument to modify-event must be an event name\./u,
+		'should fail when the second argument is not a string.'
 	);
 
 	t.throws(
-		() => modifyEvent(emitter, 'data', 'foo'),
+		() => modifyEvent(new EventEmitter(), 'data', 'foo'),
 		/^TypeError.*'foo' is not a function\. The third argument to modify-event must be a function\./u,
-		'should throw a type error when the third argument is not a function.'
+		'should fail when the third argument is not a function.'
 	);
 
 	t.end();
